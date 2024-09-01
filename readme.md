@@ -9,7 +9,17 @@ This is the Google Drive Connector for Convertigo. use this library to connect t
 For more technical informations : [documentation](./project.md)
 
 - [Installation](#installation)
+- [Sequences](#sequences)
+    - [checkAccessTokenGoogle](#checkaccesstokengoogle)
+    - [ClearRefreshToken](#clearrefreshtoken)
+    - [FileList](#filelist)
+    - [getRefreshToken](#getrefreshtoken)
+    - [loginGoogleWithCode](#logingooglewithcode)
+    - [TestLogin](#testlogin)
 - [Mobile Library](#mobile-library)
+    - [Pages](#pages)
+        - [Configure](#configure)
+        - [TestOnly](#testonly)
 
 
 ## Installation
@@ -38,9 +48,85 @@ For more technical informations : [documentation](./project.md)
 3. Click the `Finish` button. This will automatically import the __lib_GoogleDrive__ project
 
 
+## Sequences
+
+### checkAccessTokenGoogle
+
+Checks is a valid access token is held by the current users' session for Google
+
+This as to be called by client apps to decide whenever or not they have to display an OAuth login screen
+
+
+
+### ClearRefreshToken
+
+Remove any RefreshToken and GoogletAcessTokne form the session and user profile
+
+### FileList
+
+List files in the current logged user google drive
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>q</td><td></td>
+</tr>
+</table>
+
+### getRefreshToken
+
+Gets the google oAuth refresh token previsously stored in user profile. Used  to get the rToken  to be stored in the  Forms data source configuration 
+
+### loginGoogleWithCode
+
+Perform the OAuth flow for Google
+
+If the token is valid, it will be stored in the user's session to be used when calling Microsoft APIs.
+
+Also if the token is valid, setAuthenticatedUser step is executed to flag this session as authenticated.
+
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>client_id</td><td></td>
+</tr>
+<tr>
+<td>code</td><td></td>
+</tr>
+<tr>
+<td>keySecret</td><td></td>
+</tr>
+<tr>
+<td>redirect_uri</td><td></td>
+</tr>
+</table>
+
+### TestLogin
+
+This only to have the test application logged in to be able to add Attributes to user accounts
+
 ## Mobile Library
 
 Describes the mobile application global properties
+
+### Pages
+
+#### Configure
+
+The No Code forms configuration page
+
+#### TestOnly
+
+This is a Test page to launch before calling BackEnd seqeunces. This will login using the DEMO user profile
 
 
 

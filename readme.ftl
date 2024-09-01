@@ -31,7 +31,7 @@
 	
 	"connectors"	: false,
 	"transactions"	: true,
-	"sequences"		: !has(project, "urlmapper") && !has(project, "mobileapp"),
+	"sequences"		: true,
 	
 	"references"	: false,
 	
@@ -41,7 +41,7 @@
 	"parameters"	: true,
 	
 	"mobileapp"		: true,
-	"pages"			: !project.name?starts_with("lib_"),
+	"pages"			: true,
 	"actions"		: true,
 	"components"	: true,
 	

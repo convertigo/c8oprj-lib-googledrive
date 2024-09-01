@@ -252,12 +252,12 @@ Describes the mobile application global properties
 <details><summary><span style="color:DarkGoldenRod"><i>Pages</i></span></summary><blockquote><p>
 
 
-<details><summary><b>Configure</b> : My First Page as root page</summary><blockquote><p>
+<details><summary><b>Configure</b> : The No Code forms configuration page</summary><blockquote><p>
 
 
 ### ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/ngx/components/images/pagecomponent_color_16x16.png?raw=true "PageComponent") Configure
 
-My First Page as root page
+The No Code forms configuration page
 </p></blockquote></details>
 
 <details><summary><b>TestOnly</b> : This is a Test page to launch before calling BackEnd seqeunces</summary><blockquote><p>

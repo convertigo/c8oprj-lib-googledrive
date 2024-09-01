@@ -1,5 +1,5 @@
 ↑isRoot: true
-comment: My First Page as root page
+comment: The No Code forms configuration page
 preloadPriority: high
 scriptContent: 
   - xmlizable: 
