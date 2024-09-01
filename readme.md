@@ -74,6 +74,9 @@ List files in the current logged user google drive
 <th>name</th><th>comment</th>
 </tr>
 <tr>
+<td>pageSize</td><td>The Max number of items to return (Default 100)</td>
+</tr>
+<tr>
 <td>q</td><td>The search query string. See  https://developers.google.com/drive/api/guides/search-files for examples</td>
 </tr>
 </table>
@@ -92,7 +95,10 @@ List files from a Google Drive. You can filter files to list using the Query var
 <td>forms_config</td><td>Returns the file list of a drive with a given configuration</td>
 </tr>
 <tr>
-<td>forms_Query</td><td>The search qyery to perform. An empty string wll return all files. See this link for search query syntax : https://developers.google.com/drive/api/guides/search-files</td>
+<td>forms_PageSize</td><td>The maximum number of items to return</td>
+</tr>
+<tr>
+<td>forms_Query</td><td>The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href='https://developers.google.com/drive/api/guides/search-files'>Query</a></td>
 </tr>
 </table>
 

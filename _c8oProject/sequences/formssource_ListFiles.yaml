@@ -16,8 +16,8 @@ comment: |
 ↓ParseConfig [steps.SimpleStep-1725174254304]: 
   expression: |
     forms_config = JSON.parse(forms_config);
-    Query = forms_Query
-    
+    q = forms_Query
+    pageSize = forms_PageSize
 ↓Range1 [steps.JsonFieldStep-1725174254313]: 
   key: 
     - xmlizable: 
@@ -82,6 +82,10 @@ comment: |
     	"en": {
     		"comment":"Returns the file list of a drive with a given configuration",
     		"displayName":"Configuration"
+    	},
+    	"fr": {
+    		"comment":"Retourne la liste des fichiers d''un Google Drive selon une configuration donnée",
+    		"displayName":"Configuration"
     	}
     }'
   description: configure=lib_GoogleDrive/DisplayObjects/mobile/Configure
@@ -90,8 +94,17 @@ comment: |
   comment: |
     '{
     	"en": {
-    		"comment":"The search qyery to perform. An empty string wll return all files. See this link for search query syntax : https://developers.google.com/drive/api/guides/search-files",
+    		"comment":"The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href=''https://developers.google.com/drive/api/guides/search-files''>Query</a>",
     		"displayName":"Query"
+    	}
+    }'
+  description: 
+↓forms_PageSize [variables.RequestableVariable-1725192244036]: 
+  comment: |
+    '{
+    	"en": {
+    		"comment":"The maximum number of items to return",
+    		"displayName":"Page Size"
     	}
     }'
   description: 

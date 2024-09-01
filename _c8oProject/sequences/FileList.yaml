@@ -66,12 +66,7 @@ comment: List files in the current logged user google drive
     			.setQ(q)
                 .setSpaces("drive")
             	.setFields("files(id, name, parents)")			
-    //			.setSpaces("drive")
-    //			.setPageSize(100)
-    //			.setCorpus("user")
-    //			.setPageToken(null)
-    //			.setSupportsAllDrives(true)
-    //        	.setIncludeItemsFromAllDrives(true)
+    			.setPageSize(pageSize)
     			.execute();
     		files = result.getFiles();
     		if (files == null || files.isEmpty()) {
@@ -176,6 +171,12 @@ comment: List files in the current logged user google drive
               - →→: item.parents
 ↓q [variables.RequestableVariable-1725169951757]: 
   comment: The search query string. See  https://developers.google.com/drive/api/guides/search-files for examples
+↓pageSize [variables.RequestableVariable-1725192083590]: 
+  comment: The Max number of items to return (Default 100)
+↓TestPage1000 [core.TestCase]: 
+  ↓q [variables.TestCaseVariable-1725192149729]: 
+  ↓pageSize [variables.TestCaseVariable-1725192167307]: 
+    value: 1000
 ↓TestQContains [core.TestCase]: 
   ↓q [variables.TestCaseVariable-1725169969700]: 
     comment: |
