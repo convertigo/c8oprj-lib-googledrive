@@ -159,7 +159,7 @@ comment
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;q
 </td>
 <td>
-The search query string. See  https://developers.google.com/drive/api/guides/search-shareddrives#examples for examples
+The search query string. See  https://developers.google.com/drive/api/guides/search-files for examples
 </td>
 </tr>
 </table>
