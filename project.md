@@ -213,7 +213,7 @@ The maximum number of items to return
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;forms_Query
 </td>
 <td>
-The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href='https://developers.google.com/drive/api/guides/search-files'>Query</a>
+The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href='https://developers.google.com/drive/api/guides/search-files' target='_blank'>Query</a>
 </td>
 </tr>
 </table>

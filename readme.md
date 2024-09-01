@@ -98,7 +98,7 @@ List files from a Google Drive. You can filter files to list using the Query var
 <td>forms_PageSize</td><td>The maximum number of items to return</td>
 </tr>
 <tr>
-<td>forms_Query</td><td>The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href='https://developers.google.com/drive/api/guides/search-files'>Query</a></td>
+<td>forms_Query</td><td>The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href='https://developers.google.com/drive/api/guides/search-files' target='_blank'>Query</a></td>
 </tr>
 </table>
 

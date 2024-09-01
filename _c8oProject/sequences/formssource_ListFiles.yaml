@@ -15,9 +15,9 @@ comment: |
   '
 ↓ParseConfig [steps.SimpleStep-1725174254304]: 
   expression: |
-    forms_config = JSON.parse(forms_config);
+    'forms_config = JSON.parse(forms_config);
     q = forms_Query
-    pageSize = forms_PageSize
+    pageSize = forms_PageSize != undefined  || forms_PageSize != ""? forms_PageSize * 1 : 100'
 ↓Range1 [steps.JsonFieldStep-1725174254313]: 
   key: 
     - xmlizable: 
@@ -63,10 +63,10 @@ comment: |
             - ↑value: ./text()
 ↓Call_Sequence [steps.SequenceStep-1725173822059]: 
   sourceSequence: lib_GoogleDrive.FileList
-  ↓Query [variables.StepVariable-1725173822071]: 
-    comment: |
-      A Query in google Query language Syntax such as SELECT * WHERE  A contains('this pattern')
-      
+  ↓q [variables.StepVariable-1725194125987]: 
+    comment: The search query string. See  https://developers.google.com/drive/api/guides/search-files for examples
+  ↓pageSize [variables.StepVariable-1725194125989]: 
+    comment: The Max number of items to return (Default 100)
 ↓Copy [steps.XMLCopyStep-1725174705525]: 
   sourceDefinition: 
     - xmlizable: 
@@ -94,7 +94,7 @@ comment: |
   comment: |
     '{
     	"en": {
-    		"comment":"The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href=''https://developers.google.com/drive/api/guides/search-files''>Query</a>",
+    		"comment":"The search query to perform. An empty string wll return all files. See this link for search query syntax : <a href=''https://developers.google.com/drive/api/guides/search-files'' target=''_blank''>Query</a>",
     		"displayName":"Query"
     	}
     }'
