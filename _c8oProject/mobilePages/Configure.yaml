@@ -15,7 +15,7 @@ scriptContent:
         /*Begin_c8o_PageFunction*/
         	/*End_c8o_PageFunction*/
         
-segment: path-to-xfirst
+segment: Configure
 title: First page
 ↓Content [ngx.components.UIDynamicElement-1489674805352]: 
   beanData: '{"ionBean":"Content"}'

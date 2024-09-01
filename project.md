@@ -166,23 +166,12 @@ The search query string. See  https://developers.google.com/drive/api/guides/sea
 
 </p></blockquote></details>
 
-<details><summary><b>formssource_ListFiles</b> : {</summary><blockquote><p>
+<details><summary><b>formssource_ListFiles</b> : List files from a Google Drive</summary><blockquote><p>
 
 
 ## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/sequences/images/genericsequence_color_16x16.png?raw=true "GenericSequence") formssource_ListFiles
 
-{
-    "en": {
-        "displayName": "ListFiles",
-        "comment": "List files from a Google Drive. You can filter files to list using the Query variable"
-    },
-    "fr": {
-        "displayName": "ListFiles",
-        "comment": Lister les fichiers contenus dans un Google Drive. Vous pouvez filter la list des fichiers à l'aide de la variable Query."
-    },
-    "types": ["grid"]
-}
-
+List files from a Google Drive. You can filter files to list using the Query variable
 
 <span style="color:DarkGoldenRod">Variables</span>
 

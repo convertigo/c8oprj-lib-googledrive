@@ -80,18 +80,7 @@ List files in the current logged user google drive
 
 ### formssource_ListFiles
 
-{
-    "en": {
-        "displayName": "ListFiles",
-        "comment": "List files from a Google Drive. You can filter files to list using the Query variable"
-    },
-    "fr": {
-        "displayName": "ListFiles",
-        "comment": Lister les fichiers contenus dans un Google Drive. Vous pouvez filter la list des fichiers à l'aide de la variable Query."
-    },
-    "types": ["grid"]
-}
-
+List files from a Google Drive. You can filter files to list using the Query variable
 
 **variables**
 
