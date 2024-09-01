@@ -59,7 +59,10 @@ comment: List files in the current logged user google drive
     	setError = null;
     
     	try {
-    		log.debug("[Google Drive Connector] start...");	
+    		log.warn("[Google Drive Connector] start...");	
+    
+    		pageSize = pageSize ? pageSize *= 1 : 100 
+    		log.warn("[Google Drive Connector] pageSize is : " + pageSize);	
     		
     		let result = service.files()
     			.list()

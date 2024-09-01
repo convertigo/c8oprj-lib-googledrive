@@ -15,9 +15,10 @@ comment: |
   '
 ↓ParseConfig [steps.SimpleStep-1725174254304]: 
   expression: |
-    'forms_config = JSON.parse(forms_config);
+    forms_config = JSON.parse(forms_config);
     q = forms_Query
-    pageSize = forms_PageSize != undefined  || forms_PageSize != ""? forms_PageSize * 1 : 100'
+    pageSize = 	forms_PageSize 
+    			
 ↓Range1 [steps.JsonFieldStep-1725174254313]: 
   key: 
     - xmlizable: 
@@ -108,29 +109,27 @@ comment: |
     	}
     }'
   description: 
-↓testFilter [core.TestCase]: 
+↓testOK [core.TestCase]: 
   ↓forms_config [variables.TestCaseVariable-1725173822099]: 
     description: configure=lib_GoogleSheet/DisplayObjects/mobile/Configure
     required: true
     value: |
       '{
-      	"sheet_id":"1txNgqBGAwpua2ZhP8XE8i8IHsOl1I-XwmhDs4mAmRCo",
-      	"range":"A1:Z100",
       	"token":"${lib_googlesheet.testtoken}"
       }
       '
-  ↓forms_tableFilter [variables.TestCaseVariable-1725173822102]: 
-    description: filter
+↓testOK1 [core.TestCase]: 
+  ↓forms_config [variables.TestCaseVariable-1725195260993]: 
+    description: configure=lib_GoogleSheet/DisplayObjects/mobile/Configure
+    required: true
     value: |
       '{
-      		"filters":[{
-      			"field": "Description",
-      			"op": "contains",
-      			"value": ""
-      		}],
-      		"mode":"AND"
+      	"token":"${lib_googlesheet.testtoken}"
       }
-      
-      	
-      	'
-  ↓model [variables.TestCaseVariable-1725173822105]: 
+      '
+  ↓forms_Query [variables.TestCaseVariable-1725195268200]: 
+    description: 
+    value: name contains 'W'
+  ↓forms_PageSize [variables.TestCaseVariable-1725195268202]: 
+    description: 
+    value: 1000
