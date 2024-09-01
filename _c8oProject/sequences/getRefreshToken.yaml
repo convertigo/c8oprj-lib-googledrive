@@ -1,0 +1,47 @@
+accessibility: Hidden
+authenticatedContextRequired: true
+comment: Gets the google oAuth refresh token previsously stored in user profile. Used  to get the rToken  to be stored in the  Forms data source configuration 
+↓authenticatedUserID [steps.GetAuthenticatedUserStep-1724915718823]: 
+  output: false
+↓Call_Sequence [steps.SequenceStep-1724915718826]: 
+  sourceSequence: lib_UserManager.GetUserAttribute
+  ↓user [variables.StepVariable-1724915718829]: 
+    comment: The user where we have to set the attribute on
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1724915718823
+          - java.lang.String: 
+            - ↑value: ./text()
+  ↓attribute [variables.StepVariable-1724915718832]: 
+    comment: The attribute name
+    value: GoogleOAuthRefreshToken
+↓myVariable [steps.SimpleSourceStep-1724915718835]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1724915718826
+        - java.lang.String: 
+          - ↑value: ./document/value/text()
+  variableName: jToken
+↓Cipher [steps.SimpleStep-1724915718838]: 
+  expression: |
+    jToken = com.twinsoft.convertigo.engine.util.Crypto.encodeToHexString(jToken);
+    
+↓field [steps.JsonFieldStep-1724915718841]: 
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: value
+  value: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: JS
+        - →→: jToken

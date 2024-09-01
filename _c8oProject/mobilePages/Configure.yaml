@@ -1,0 +1,303 @@
+↑isRoot: true
+comment: My First Page as root page
+preloadPriority: high
+scriptContent: 
+  - xmlizable: 
+    - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+    - com.twinsoft.convertigo.beans.common.FormatedContent: 
+      →: |
+        /*Begin_c8o_PageImport*/
+        /*End_c8o_PageImport*/
+        /*Begin_c8o_PageDeclaration*/
+        	/*End_c8o_PageDeclaration*/
+        /*Begin_c8o_PageConstructor*/
+        		/*End_c8o_PageConstructor*/
+        /*Begin_c8o_PageFunction*/
+        	/*End_c8o_PageFunction*/
+        
+segment: path-to-xfirst
+title: First page
+↓Content [ngx.components.UIDynamicElement-1489674805352]: 
+  beanData: '{"ionBean":"Content"}'
+  comment: Page content
+  tagName: ion-content
+  ↓Paragraph [ngx.components.UIDynamicElement-1725015646567]: 
+    beanData: '{"ionBean":"Paragraph"}'
+    tagName: p
+    ↓Text [ngx.components.UIText-1725015646570]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:Click The 'Authenticate' Button to login to Google . You Identity will be used to acess Googgle Drive. 
+  ↓Button [ngx.components.UIDynamicElement-1725015808439]: 
+    beanData: '{"ionBean":"Button"}'
+    tagName: ion-button
+    ↓Text [ngx.components.UIText-1725015808442]: 
+      textValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:Authenticate
+    ↓Event [ngx.components.UIControlEvent-1725015808445]: 
+      ↓CallSequence [ngx.components.UIDynamicAction-1725015935437]: 
+        beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_OAuth.GetOAuthCredentials"}'
+        ↓CallSequence [ngx.components.UIDynamicAction-1725015935440]: 
+          beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_GoogleDrive.ClearRefreshToken"}'
+          ↓OAuthLogin [ngx.components.UIDynamicAction-1725015935443]: 
+            beanData: |
+              '{
+               "ionBean": "OAuthLoginAction",
+               "provider": "plain:openid",
+               "clientid": "source:{\"filter\":\"Sequence\",\"project\":\"GoogleSpeadSheetDemo\",\"input\":\"\",\"model\":{\"data\":[{\"sequence\":\"lib_OAuth.GetOAuthCredentials\",\"marker\":\"\"}],\"path\":\"?.GoogleClientID\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
+               "scope": "plain:https:\/\/www.googleapis.com\/auth\/userinfo.email https:\/\/www.googleapis.com\/auth\/userinfo.profile https:\/\/www.googleapis.com\/auth\/drive&access_type=offline&prompt=consent",
+               "response_type": "plain:code",
+               "loginRequestable": "plain:lib_GoogleDrive.loginGoogleWithCode",
+               "checkAccessTokenRequestable": "plain:lib_GoogleDrive.checkAccessTokenGoogle",
+               "authorization_endpoint": "plain:https:\/\/accounts.google.com\/o\/oauth2\/v2\/auth",
+               "callbackurl": "plain:https:\/\/c8ocloud.convertigo.net\/convertigo\/projects\/lib_OAuth\/getTokenGoogle.html"
+              }'
+            ↓CallSequence [ngx.components.UIDynamicAction-1725029144000]: 
+              beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_GoogleDrive.FileList"}'
+  ↓Directive [ngx.components.UIControlDirective-1725085186172]: 
+    directiveName: If
+    directiveSource: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: source:{"filter":"Sequence","project":"lib_GoogleDrive","input":"","model":{"data":[{"sequence":"lib_GoogleDrive.FileList","marker":""}],"path":"?.data","prefix":"","suffix":"","custom":"","useCustom":false}}
+    ↓UseSharedComponent [ngx.components.UIUseShared-1725042102100]: 
+      sharedcomponent: lib_ExtendedComponents_ui_ngx.MobileApplication.Application.agGrid
+      ↓pagination [ngx.components.UIUseVariable-1725083917313]: 
+        comment: 'boolean: true (default) or false'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:false
+      ↓paginationPageSize [ngx.components.UIUseVariable-1725083917315]: 
+        comment: 'integer: 10 by default'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:10
+      ↓rowSelection [ngx.components.UIUseVariable-1725083917317]: 
+        comment: 'string: ''single'' (default) or ''multiple'''
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'single'
+      ↓rowDeselection [ngx.components.UIUseVariable-1725083917319]: 
+        comment: 'boolean: true (default) or false'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:true
+      ↓defaultColDef [ngx.components.UIUseVariable-1725083917321]: 
+        comment: 'default is {hide: false, editable: true, sortable: true, resizable: true, filter: true, checkboxSelection: false, singleClickEdit: false}'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: |
+                'script:{
+                	hide: false,
+                	editable: false,
+                	sortable: true,
+                	resizable: true,
+                	filter: true,
+                	checkboxSelection: false,
+                	singleClickEdit: false
+                }'
+      ↓columnDefs [ngx.components.UIUseVariable-1725083917323]: 
+        comment: 'Array of columnDef {headerName: ''headerName'', field: ''fieldName''} objects'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: |
+                'script:[{
+                	''headerName'': ''File name'',
+                	''field'': ''name''
+                },
+                {
+                	''headerName'': ''Google drive ID'',
+                	''field'': ''id''
+                },
+                {
+                	''headerName'': ''Parent folders'',
+                	''field'': ''parents''
+                }]'
+      ↓rowData [ngx.components.UIUseVariable-1725083917325]: 
+        comment: 'Array of row { fieldName1: ''value1'', fieldName2: ''value2'', fieldName3: true, ...} objects'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Sequence","project":"lib_GoogleDrive","input":"","model":{"data":[{"sequence":"lib_GoogleDrive.FileList","marker":""}],"path":"?.data","prefix":"","suffix":"","custom":"","useCustom":false}}
+      ↓width [ngx.components.UIUseVariable-1725083917327]: 
+        comment: width value in % or px
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'100%'
+      ↓height [ngx.components.UIUseVariable-1725083917329]: 
+        comment: height is 'auto' or value in % or px
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'auto'
+      ↓class [ngx.components.UIUseVariable-1725083917331]: 
+        comment: |
+          'One of the themes provided here :
+          
+          https://www.ag-grid.com/javascript-grid-themes-provided/
+          
+          Also be shure to add the theme in the Theme object as :
+          
+          @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss";
+          
+          
+          
+          '
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'ag-theme-quartz'
+      ↓id [ngx.components.UIUseVariable-1725083917333]: 
+        comment: An Optional ID
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:''
+      ↓suppressCellSelection [ngx.components.UIUseVariable-1725083917335]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:false
+      ↓suppressRowClickSelection [ngx.components.UIUseVariable-1725083917337]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:false
+      ↓overlayLoadingTemplate [ngx.components.UIUseVariable-1725083917339]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:''
+      ↓overlayNoRowsTemplate [ngx.components.UIUseVariable-1725083917341]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:''
+      ↓rowHeight [ngx.components.UIUseVariable-1725083917343]: 
+        comment: Height of the row in pixels as a string
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'25'
+      ↓wrapperClass [ngx.components.UIUseVariable-1725083917345]: 
+        comment: Height of the row in pixels as a string
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:''
+      ↓rowModelType [ngx.components.UIUseVariable-1725083917347]: 
+        comment: Row model type
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:'clientSide'
+      ↓maxBlocksInCache [ngx.components.UIUseVariable-1725083917349]: 
+        comment: How many blocks to keep in the store. Default is no limit, so every requested block is kept
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:''
+      ↓autoSizeColumns [ngx.components.UIUseVariable-1725083917351]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:false
+      ↓accessibility [ngx.components.UIUseVariable-1725083917353]: 
+        comment: 'boolean: true (default) or false'
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:false
+      ↓ariaLabel [ngx.components.UIUseVariable-1725083917355]: 
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:''
+      ↓showCsvDownload [ngx.components.UIUseVariable-1725083917357]: 
+        comment: |
+          If set to true will display a side bar menu where user can click a download button to download the grid content as a CSV file.
+          
+        varValue: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: script:false
+↓PageEvent [ngx.components.UIPageEvent-1725015543308]: 
+↓Footer [ngx.components.UIDynamicElement-1725015579375]: 
+  beanData: '{"ionBean":"Footer"}'
+  tagName: ion-footer
+  ↓ToolBar [ngx.components.UIDynamicElement-1725015579378]: 
+    beanData: '{"ionBean":"ToolBar"}'
+    tagName: ion-toolbar
+    ↓ButtonSet1 [ngx.components.UIDynamicElement-1725015579381]: 
+      beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
+      tagName: ion-buttons
+      ↓Button [ngx.components.UIDynamicElement-1725015579384]: 
+        beanData: |
+          '{
+           "ionBean": "Button",
+           "IonColor": "plain:primary",
+           "IonFill": "plain:solid"
+          }'
+        tagName: ion-button
+        ↓Icon [ngx.components.UIDynamicElement-1725015579387]: 
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "plain:checkmark-outline",
+             "IconSlot": "plain:start"
+            }'
+          tagName: ion-icon
+        ↓Label [ngx.components.UIDynamicElement-1725015579390]: 
+          beanData: '{"ionBean":"Label"}'
+          tagName: ion-label
+          ↓Text [ngx.components.UIText-1725015579393]: 
+            i18n: true
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:Confirm
+        ↓Event [ngx.components.UIControlEvent-1725015579396]: 
+          ↓CallSequence [ngx.components.UIDynamicAction-1725015579399]: 
+            beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_GoogleDrive.getRefreshToken"}'
+            comment: We need to get the refesh token as it will be used in the Configuration
+            ↓ComputeGoogleDriveConfiguration [ngx.components.UICustomAction-1725015579402]: 
+              actionValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                  - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                    →: |
+                      '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                      		
+                      		let conf : any = {
+                      			token: vars.refreshToken
+                      		}
+                      				
+                      		console.log("conf", conf);
+                      		
+                      		if (window.parent) {
+                      			window.parent["setConfigurationData"](JSON.stringify(conf))
+                      		}
+                      		resolve(conf);
+                      '
+              ↓Log [ngx.components.UIDynamicAction-1725015579405]: 
+                beanData: |
+                  '{
+                   "ionBean": "LogAction",
+                   "message": "script:JSON.stringify(out)",
+                   "level": "plain:warn"
+                  }'
+              ↓refreshToken [ngx.components.UIControlVariable-1725015579408]: 
+                varValue: 
+                  - xmlizable: 
+                    - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                    - MobileSmartSourceType: source:{"filter":"Action","project":"lib_GoogleSheet","input":"","model":{"data":[{"priority":1725015579399,"rootEvent":false,"pageLocals":false},{"priority":1723652329797,"rootEvent":true,"pageLocals":false}],"path":"?.out","prefix":"","suffix":"?.value","custom":"","useCustom":false}}

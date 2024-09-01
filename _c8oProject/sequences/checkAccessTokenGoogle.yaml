@@ -1,0 +1,189 @@
+accessibility: Hidden
+comment: |
+  Checks is a valid access token is held by the current users' session for Google
+  
+  This as to be called by client apps to decide whenever or not they have to display an OAuth login screen
+  
+  
+↓getTimeStampFromSession [steps.SessionGetStep-1724915718707]: 
+  key: oAuthTimeStamp
+  output: false
+↓oAuthTimeStamp [steps.SimpleSourceStep-1724915718710]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1724915718707
+        - java.lang.String: 
+          - ↑value: ./expression/text()
+  variableName: oAuthTimeStamp
+↓computeTimeDiff [steps.SimpleStep-1724915718713]: 
+  expression: |
+    '//log.warn("oAuthTimeStamp: " + oAuthTimeStamp);
+    timeDiff = new Date().getTime() - oAuthTimeStamp * 1
+    //log.warn("Time diff: " + timeDiff);
+    
+    // if timeDiff is greater than 30 minutesset a bRefreshToken flag to true
+    if (timeDiff > 1800000) {
+    	log.warn("We have to refresh the token ! ");
+    	bRefreshToken = true;
+    } else {
+    	bRefreshToken = false;
+    }
+    '
+↓GetTokenFromUserSession [steps.SessionGetStep-1724915718716]: 
+  key: oAuthAccessTokenGoogleDrive
+  output: false
+↓IfExistThenElse [steps.IfExistStep-1724915718719]: 
+  comment: We do have a token in the user session.. Test if it is still in the time diff
+  condition: IfExistThenElse
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1724915718716
+        - java.lang.String: 
+          - ↑value: ./expression/text()
+  ↓jIf [steps.IfStep-1724915718722]: 
+    comment: If bRefreshToken is false we are still in the syime diff so no need to refresh it
+    condition: '! bRefreshToken'
+    ↓Log [steps.LogStep-1724915718725]: 
+      expression: '"We found a token in user session, so return it"'
+      level: WARN
+    ↓login [steps.XMLElementStep-1724915718728]: 
+      comment: Just return it
+      nodeName: token
+      nodeText: ok
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1724915718716
+            - java.lang.String: 
+              - ↑value: ./expression/text()
+    ↓Return [steps.ReturnStep-1724915718731]: 
+↓Get_authenticated_user [steps.GetAuthenticatedUserStep-1724915718734]: 
+  comment: Token is expired, so we have to refresh it
+  output: false
+↓Call_Sequence [steps.SequenceStep-1724915718737]: 
+  comment: Get the user token for the user profile
+  sourceSequence: lib_UserManager.GetUserAttribute
+  ↓user [variables.StepVariable-1724915718740]: 
+    comment: The user where we have to set the attribute on
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1724915718734
+          - java.lang.String: 
+            - ↑value: ./text()
+  ↓attribute [variables.StepVariable-1724915718743]: 
+    comment: The attribute name
+    value: GoogleOAuthRefreshToken
+↓IfExistThenElse1 [steps.IfExistThenElseStep-1724915718746]: 
+  comment: If we have one and it is not null
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1724915718737
+        - java.lang.String: 
+          - ↑value: ./document/value[text() != '' and text() != 'null']
+  ↓jThen [steps.ThenStep-1724915718749]: 
+    ↓Log [steps.LogStep-1724915718752]: 
+      comment: Refresh it
+      expression: '"A refresh token is available, requesting from it an acess token..."'
+      level: WARN
+    ↓Call_Transaction [steps.TransactionStep-1724915718755]: 
+      sourceTransaction: lib_GoogleDrive.GoogleOAuth.RefreshToken
+      ↓client_id [variables.StepVariable-1724915718758]: 
+        value: ${lib_oauth.google.clientid}
+      ↓client_secret [variables.StepVariable-1724915718761]: 
+        value: 
+          - ↑ciphered: true
+          - ↑traceable: false
+          - →→: xe3e8d34ac6f50dd03fb1b49b167dde8acf4e108275aa6607ecdc1742b13dc0f244477d0843c75b183120fdd6a8e52211
+        visibility: '-1'
+      ↓grant_type [variables.StepVariable-1724915718764]: 
+        value: refresh_token
+      ↓refresh_token [variables.StepVariable-1724915718767]: 
+        sourceDefinition: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: 1724915718737
+              - java.lang.String: 
+                - ↑value: ./document/value/text()
+        value: refresh_token
+    ↓IfExist [steps.IfExistStep-1724915718770]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1724915718755
+            - java.lang.String: 
+              - ↑value: ./document//error
+      ↓Error_structure [steps.XMLErrorStep-1724915718773]: 
+        message: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+            - SmartType: 
+              - ↑mode: SOURCE
+              - com.twinsoft.convertigo.beans.common.XMLVector: 
+                - java.lang.String: 
+                  - ↑value: 1724915718755
+                - java.lang.String: 
+                  - ↑value: .//error_description/text()
+      ↓Return [steps.ReturnStep-1724915718776]: 
+    ↓login [steps.XMLElementStep-1724915718779]: 
+      nodeName: token
+      nodeText: ok
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1724915718755
+            - java.lang.String: 
+              - ↑value: ./document/object/access_token/text()
+    ↓SetOAuthTokenInSession [steps.SessionSetStep-1724915718782]: 
+      expression: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: SOURCE
+            - com.twinsoft.convertigo.beans.common.XMLVector: 
+              - java.lang.String: 
+                - ↑value: 1724915718779
+              - java.lang.String: 
+                - ↑value: ./text()
+      key: oAuthAccessTokenGoogleDrive
+    ↓getTimeStamp [steps.SimpleStep-1724915718785]: 
+      expression: |
+        timeStamp = new Date().getTime();
+        
+    ↓setTimeStampInSession [steps.SessionSetStep-1724915718788]: 
+      comment: Not the timestamp the token we refreshed in the session
+      expression: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+          - SmartType: 
+            - ↑mode: JS
+            - →→: timeStamp
+      key: oAuthTimeStamp
+    ↓Return [steps.ReturnStep-1724915718791]: 
+  ↓jElse [steps.ElseStep-1724915718794]: 
+    ↓Log [steps.LogStep-1724915718797]: 
+      comment: Well not token at all ! we will need a new one 
+      expression: '"No refresh token available for this user, So return no token"'
+      level: WARN
+    ↓login [steps.XMLElementStep-1724915718800]: 
+      nodeName: notoken
+      nodeText: true

@@ -1,0 +1,23 @@
+accessibility: Hidden
+authenticatedUserAsCacheKey: true
+comment: Remove any RefreshToken and GoogletAcessTokne form the session and user profile
+↓Remove_from_session [steps.SessionRemoveStep-1724915718804]: 
+  key: oAuthAccessTokenGoogleDrive
+↓authenticatedUserID [steps.GetAuthenticatedUserStep-1724915718807]: 
+↓Call_Sequence [steps.SequenceStep-1724915718810]: 
+  sourceSequence: lib_UserManager.SetUserAttribute
+  ↓user [variables.StepVariable-1724915718813]: 
+    comment: The user where we have to set the attribute on
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1724915718807
+          - java.lang.String: 
+            - ↑value: ./text()
+  ↓attribute [variables.StepVariable-1724915718816]: 
+    comment: The attribute name
+    value: GoogleOAuthRefreshToken
+  ↓value [variables.StepVariable-1724915718819]: 
+    comment: The attribute value

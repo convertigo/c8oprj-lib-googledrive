@@ -1,0 +1,25 @@
+↑default: true
+https: true
+port: 443
+server: oauth2.googleapis.com
+↓RefreshToken [transactions.JsonHttpTransaction]: 
+  ↑default: true
+  httpPool: global
+  httpVerb: POST
+  subDir: token
+  ↓client_id [variables.RequestableHttpVariable-1724915676434]: 
+    httpMethod: POST
+    httpName: client_id
+  ↓client_secret [variables.RequestableHttpVariable-1724915676437]: 
+    httpMethod: POST
+    httpName: client_secret
+  ↓redirect_uri [variables.RequestableHttpVariable-1724915676440]: 
+    httpMethod: POST
+    httpName: redirect_uri
+  ↓grant_type [variables.RequestableHttpVariable-1724915676443]: 
+    httpMethod: POST
+    httpName: grant_type
+    value: authorization_code
+  ↓refresh_token [variables.RequestableHttpVariable-1724915676446]: 
+    httpMethod: POST
+    httpName: refresh_token

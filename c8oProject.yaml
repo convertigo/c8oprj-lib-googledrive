@@ -1,10 +1,35 @@
 ↑convertigo: 8.0.0.m006
 ↓lib_GoogleDrive [core.Project]: 
-  comment: Convertigo NGX builder Project
+  comment: |
+    '{
+        "en": {
+            "displayName": "Google Drive Connector",
+            "comment": "This is the Google Drive Connector for Convertigo. use this library to connect to your no code apps to Google Drive"
+        },
+        "fr": {
+            "displayName": "Connecteur Google Drive",
+            "comment": "Ceci est le connecteur Google Drive pour Convertigo. Utilisez cette librairie pour connecter vos applications No Code à google Drive"
+        }
+    }
+    '
   contextTimeout: 59
   corsOrigin: =Origin
   httpSessionTimeout: 60
-  ↓void [connectors.SqlConnector]: 🗏 connectors/void.yaml
+  ↓GoogleOAuth [connectors.HttpConnector]: 🗏 connectors/GoogleOAuth.yaml
+  ↓checkAccessTokenGoogle [sequences.GenericSequence]: 🗏 sequences/checkAccessTokenGoogle.yaml
+  ↓ClearRefreshToken [sequences.GenericSequence]: 🗏 sequences/ClearRefreshToken.yaml
+  ↓FileList [sequences.GenericSequence]: 🗏 sequences/FileList.yaml
+  ↓getRefreshToken [sequences.GenericSequence]: 🗏 sequences/getRefreshToken.yaml
+  ↓loginGoogleWithCode [sequences.GenericSequence]: 🗏 sequences/loginGoogleWithCode.yaml
+  ↓TestLogin [sequences.GenericSequence]: 🗏 sequences/TestLogin.yaml
+  ↓lib_ExtendedComponents_ui_ngx_reference [references.ProjectSchemaReference]: 
+    projectName: lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=8.3.0.0
+  ↓lib_GoogleSheet_reference [references.ProjectSchemaReference]: 
+    projectName: lib_GoogleSheet=https://github.com/convertigo/c8oprj-lib-googlesheets.git:branch=8.3.0
+  ↓lib_OAuth_reference [references.ProjectSchemaReference]: 
+    projectName: lib_OAuth=https://github.com/convertigo/c8oprj-lib-oauth.git:branch=334a638363d83d83bfed756b025f96226751e50e
+  ↓lib_UserManager_reference [references.ProjectSchemaReference]: 
+    projectName: lib_UserManager=https://github.com/convertigo/c8oprj-lib-user-manager.git:branch=7.9.0
   ↓Project_reference [references.ProjectSchemaReference]: 
     comment: ngx builder template
     projectName: mobilebuilder_tpl_8_3_0_ngx=https://github.com/convertigo/c8oprj-mobilebuilder-tpl/archive/mobilebuilder_tpl_8_3_0_ngx.zip

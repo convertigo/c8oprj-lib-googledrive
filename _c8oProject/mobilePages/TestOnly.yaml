@@ -1,0 +1,17 @@
+comment: This is a Test page to launch before calling BackEnd seqeunces. This will login using the DEMO user profile
+segment: path-to-testonly
+title: Title for TestOnly
+↓PageEvent [ngx.components.UIPageEvent-1725015479914]: 
+  ↓CallSequence [ngx.components.UIDynamicAction-1725015479917]: 
+    beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:lib_GoogleDrive.TestLogin"}'
+↓H1 [ngx.components.UIDynamicElement-1725015479920]: 
+  beanData: '{"ionBean":"Heading1"}'
+  tagName: h1
+  ↓Text [ngx.components.UIText-1725015479923]: 
+    textValue: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+        - MobileSmartSourceType: plain:You are now logged in as DEMO
+↓Content [ngx.components.UIDynamicElement-1725015479926]: 
+  beanData: '{"ionBean":"Content"}'
+  tagName: ion-content
