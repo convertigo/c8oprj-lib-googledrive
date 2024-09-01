@@ -13,6 +13,7 @@ For more technical informations : [documentation](./project.md)
     - [checkAccessTokenGoogle](#checkaccesstokengoogle)
     - [ClearRefreshToken](#clearrefreshtoken)
     - [FileList](#filelist)
+    - [formssource_ListFiles](#formssource_listfiles)
     - [getRefreshToken](#getrefreshtoken)
     - [loginGoogleWithCode](#logingooglewithcode)
     - [TestLogin](#testlogin)
@@ -74,6 +75,35 @@ List files in the current logged user google drive
 </tr>
 <tr>
 <td>q</td><td>The search query string. See  https://developers.google.com/drive/api/guides/search-files for examples</td>
+</tr>
+</table>
+
+### formssource_ListFiles
+
+{
+    "en": {
+        "displayName": "ListFiles",
+        "comment": "List files from a Google Drive. You can filter files to list using the Query variable"
+    },
+    "fr": {
+        "displayName": "ListFiles",
+        "comment": Lister les fichiers contenus dans un Google Drive. Vous pouvez filter la list des fichiers à l'aide de la variable Query."
+    },
+    "types": ["grid"]
+}
+
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>forms_config</td><td>Returns the file list of a drive with a given configuration</td>
+</tr>
+<tr>
+<td>forms_Query</td><td>The search qyery to perform. An empty string wll return all files. See this link for search query syntax : https://developers.google.com/drive/api/guides/search-files</td>
 </tr>
 </table>
 

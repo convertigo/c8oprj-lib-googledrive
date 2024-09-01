@@ -15,10 +15,12 @@
   contextTimeout: 59
   corsOrigin: =Origin
   httpSessionTimeout: 60
+  version: 1.0
   ↓GoogleOAuth [connectors.HttpConnector]: 🗏 connectors/GoogleOAuth.yaml
   ↓checkAccessTokenGoogle [sequences.GenericSequence]: 🗏 sequences/checkAccessTokenGoogle.yaml
   ↓ClearRefreshToken [sequences.GenericSequence]: 🗏 sequences/ClearRefreshToken.yaml
   ↓FileList [sequences.GenericSequence]: 🗏 sequences/FileList.yaml
+  ↓formssource_ListFiles [sequences.GenericSequence]: 🗏 sequences/formssource_ListFiles.yaml
   ↓getRefreshToken [sequences.GenericSequence]: 🗏 sequences/getRefreshToken.yaml
   ↓loginGoogleWithCode [sequences.GenericSequence]: 🗏 sequences/loginGoogleWithCode.yaml
   ↓TestLogin [sequences.GenericSequence]: 🗏 sequences/TestLogin.yaml

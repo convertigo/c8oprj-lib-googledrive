@@ -1,0 +1,123 @@
+accessibility: Hidden
+authenticatedContextRequired: true
+comment: |
+  '{
+      "en": {
+          "displayName": "ListFiles",
+          "comment": "List files from a Google Drive. You can filter files to list using the Query variable"
+      },
+      "fr": {
+          "displayName": "ListFiles",
+          "comment": Lister les fichiers contenus dans un Google Drive. Vous pouvez filter la list des fichiers à l''aide de la variable Query."
+      },
+      "types": ["grid"]
+  }
+  '
+↓ParseConfig [steps.SimpleStep-1725174254304]: 
+  expression: |
+    forms_config = JSON.parse(forms_config);
+    Query = forms_Query
+    
+↓Range1 [steps.JsonFieldStep-1725174254313]: 
+  key: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: PLAIN
+        - →→: refeshToken
+  output: false
+  value: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+      - SmartType: 
+        - ↑mode: JS
+        - →→: |
+          com.twinsoft.convertigo.engine.util.Crypto.decodeFromHexString(forms_config.token);
+          
+↓GetAuthenticatedUserID [steps.GetAuthenticatedUserStep-1725173822044]: 
+  nodeName: GetAuthenticatedUserID
+↓Call_Sequence1 [steps.SequenceStep-1725173822047]: 
+  sourceSequence: lib_UserManager.SetUserAttribute
+  ↓user [variables.StepVariable-1725173822050]: 
+    comment: The user where we have to set the attribute on
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1725173822044
+          - java.lang.String: 
+            - ↑value: ./text()
+  ↓attribute [variables.StepVariable-1725173822053]: 
+    comment: The attribute name
+    value: GoogleOAuthRefreshToken
+  ↓value [variables.StepVariable-1725173822056]: 
+    comment: The attribute value
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1725174254313
+          - java.lang.String: 
+            - ↑value: ./text()
+↓Call_Sequence [steps.SequenceStep-1725173822059]: 
+  sourceSequence: lib_GoogleDrive.FileList
+  ↓Query [variables.StepVariable-1725173822071]: 
+    comment: |
+      A Query in google Query language Syntax such as SELECT * WHERE  A contains('this pattern')
+      
+↓Copy [steps.XMLCopyStep-1725174705525]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1725173822059
+        - java.lang.String: 
+          - ↑value: ./document/array
+↓forms_config [variables.RequestableVariable-1725173822089]: 
+  comment: |
+    '{
+    	"en": {
+    		"comment":"Returns the file list of a drive with a given configuration",
+    		"displayName":"Configuration"
+    	}
+    }'
+  description: configure=lib_GoogleDrive/DisplayObjects/mobile/Configure
+  required: true
+↓forms_Query [variables.RequestableVariable-1725173822092]: 
+  comment: |
+    '{
+    	"en": {
+    		"comment":"The search qyery to perform. An empty string wll return all files. See this link for search query syntax : https://developers.google.com/drive/api/guides/search-files",
+    		"displayName":"Query"
+    	}
+    }'
+  description: 
+↓testFilter [core.TestCase]: 
+  ↓forms_config [variables.TestCaseVariable-1725173822099]: 
+    description: configure=lib_GoogleSheet/DisplayObjects/mobile/Configure
+    required: true
+    value: |
+      '{
+      	"sheet_id":"1txNgqBGAwpua2ZhP8XE8i8IHsOl1I-XwmhDs4mAmRCo",
+      	"range":"A1:Z100",
+      	"token":"${lib_googlesheet.testtoken}"
+      }
+      '
+  ↓forms_tableFilter [variables.TestCaseVariable-1725173822102]: 
+    description: filter
+    value: |
+      '{
+      		"filters":[{
+      			"field": "Description",
+      			"op": "contains",
+      			"value": ""
+      		}],
+      		"mode":"AND"
+      }
+      
+      	
+      	'
+  ↓model [variables.TestCaseVariable-1725173822105]: 
