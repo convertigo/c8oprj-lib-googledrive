@@ -8,7 +8,7 @@ comment: |
       },
       "fr": {
           "displayName": "ListFiles",
-          "comment": "Lister les fichiers contenus dans un Google Drive. Vous pouvez filter la list des fichiers à l''aide de la variable Query."
+          "comment": "Liste les fichiers contenus dans un Google Drive. Vous pouvez filtrer la liste des fichiers à l''aide de la variable Query."
       },
       "types": ["grid"]
   }
