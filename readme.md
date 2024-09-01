@@ -73,7 +73,11 @@ List files in the current logged user google drive
 <th>name</th><th>comment</th>
 </tr>
 <tr>
-<td>q</td><td></td>
+<td>q</td><td>The search query string.  https://developers.google.com/drive/api/guides/search-shareddrives#examples for examples
+The search query string.  https://developers.google.com/drive/api/guides/search-shareddrives#examples for examples
+The search query string.  https://developers.google.com/drive/api/guides/search-shareddrives#examples for examples
+The search query string.  https://developers.google.com/drive/api/guides/search-shareddrives#examples for examples
+</td>
 </tr>
 </table>
 
