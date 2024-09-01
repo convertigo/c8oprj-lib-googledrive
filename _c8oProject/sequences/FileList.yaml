@@ -177,6 +177,9 @@ comment: List files in the current logged user google drive
 ↓q [variables.RequestableVariable-1725169951757]: 
 ↓TestQContains [core.TestCase]: 
   ↓q [variables.TestCaseVariable-1725169969700]: 
+    comment: |
+      The search query string.  https://developers.google.com/drive/api/guides/search-shareddrives#examples for examples
+      
     value: fullText contains 'convertigo'
 ↓TestQNull [core.TestCase]: 
   ↓q [variables.TestCaseVariable-1725170249314]: 
