@@ -116,8 +116,6 @@ This only to have the test application logged in to be able to add Attributes to
 
 ## Mobile Library
 
-Describes the mobile application global properties
-
 ### Pages
 
 #### Configure
