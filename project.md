@@ -15,15 +15,6 @@ This is the Google Drive Connector for Convertigo. use this library to connect t
 see [readme](https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx/tree/8.3.0.0#readme)
 </p></blockquote></details>
 
-<details><summary><b>lib_GoogleSheet</b></summary><blockquote><p>
-
-
-## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/references/images/ProjectSchemaReference_16x16.png?raw=true "ProjectSchemaReference") lib_GoogleSheet
-
-
-see [readme](https://github.com/convertigo/c8oprj-lib-googlesheets/tree/8.3.0#readme)
-</p></blockquote></details>
-
 <details><summary><b>lib_OAuth</b></summary><blockquote><p>
 
 

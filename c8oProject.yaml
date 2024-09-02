@@ -27,8 +27,6 @@
   ↓TestLogin [sequences.GenericSequence]: 🗏 sequences/TestLogin.yaml
   ↓lib_ExtendedComponents_ui_ngx_reference [references.ProjectSchemaReference]: 
     projectName: lib_ExtendedComponents_ui_ngx=https://github.com/convertigo/c8oprj-lib-extended-components-ui-ngx.git:branch=8.3.0.0
-  ↓lib_GoogleSheet_reference [references.ProjectSchemaReference]: 
-    projectName: lib_GoogleSheet=https://github.com/convertigo/c8oprj-lib-googlesheets.git:branch=8.3.0
   ↓lib_OAuth_reference [references.ProjectSchemaReference]: 
     projectName: lib_OAuth=https://github.com/convertigo/c8oprj-lib-oauth.git:branch=334a638363d83d83bfed756b025f96226751e50e
   ↓lib_UserManager_reference [references.ProjectSchemaReference]: 
