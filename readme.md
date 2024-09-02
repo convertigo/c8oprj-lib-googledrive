@@ -13,6 +13,7 @@ For more technical informations : [documentation](./project.md)
     - [checkAccessTokenGoogle](#checkaccesstokengoogle)
     - [ClearRefreshToken](#clearrefreshtoken)
     - [FileList](#filelist)
+    - [FileUpload](#fileupload)
     - [formssource_ListFiles](#formssource_listfiles)
     - [getRefreshToken](#getrefreshtoken)
     - [loginGoogleWithCode](#logingooglewithcode)
@@ -78,6 +79,24 @@ List files in the current logged user google drive
 </tr>
 <tr>
 <td>q</td><td>The search query string. See  https://developers.google.com/drive/api/guides/search-files for examples</td>
+</tr>
+</table>
+
+### FileUpload
+
+Upload files in a given folder for the currently logged user's Google Drive
+
+**variables**
+
+<table>
+<tr>
+<th>name</th><th>comment</th>
+</tr>
+<tr>
+<td>files</td><td>The lits of files to upload</td>
+</tr>
+<tr>
+<td>folderID</td><td>The folder ID where to upload file. Root folder if not provided</td>
 </tr>
 </table>
 

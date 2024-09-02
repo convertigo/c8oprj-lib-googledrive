@@ -1,0 +1,164 @@
+accessibility: Hidden
+comment: Upload files in a given folder for the currently logged user's Google Drive
+↓Call_Sequence [steps.SequenceStep-1725208353875]: 
+  sourceSequence: lib_GoogleDrive.checkAccessTokenGoogle
+↓jSimpleSource [steps.SimpleSourceStep-1725208353878]: 
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1725208353875
+        - java.lang.String: 
+          - ↑value: ./document/token/text()
+  variableName: gCreds
+↓FileUpload [steps.SimpleStep-1725208353881]: 
+  expression: |
+    'var GDriveAPI = JavaImporter(
+    	com.google.api.client.auth.oauth2.Credential,
+    	com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp,
+    	com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver,
+    	com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow,
+    	com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets,
+    	com.google.api.client.googleapis.javanet.GoogleNetHttpTransport,
+    	com.google.api.client.http.javanet.NetHttpTransport,
+    	
+      	com.google.api.client.googleapis.auth.oauth2.GoogleCredential,	
+    	com.google.api.client.util.store.FileDataStoreFactory,
+      	com.google.api.services.drive.Drive,
+    	com.google.api.services.drive.DriveScopes,
+    	com.google.api.services.drive.model.File,
+    	com.google.api.services.drive.model.FileList,
+    	
+    	com.google.api.client.json.gson.GsonFactory,
+    	
+    	java.io.FileNotFoundException,
+    	java.io.IOException,
+    	java.io.InputStream,
+    	java.io.ByteArrayInputStream,
+    	java.io.InputStreamReader,
+    	java.security.GeneralSecurityException,
+    	java.util.Collections,
+    	java.util.List,
+    	java.util.ArrayList,
+    	java.util.Arrays
+    );
+    
+    with (GDriveAPI) {
+    	APPLICATION_NAME = "Convertigo Form Builder";
+    	JSON_FACTORY = GsonFactory.getDefaultInstance();	
+        HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+    
+    	log.debug("[Google Drive Connector] gCreds = " + gCreds)
+    	credential = new GoogleCredential().setAccessToken(gCreds);
+    	
+    	service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
+            .setApplicationName("Convertigo Form Builder")
+            .build();
+    
+    	setError = null;
+    
+    	try {
+    		log.debug("[Google Drive Connector] Action File upload start...");	
+    		uploadedFiles = []
+    		
+         	// Upload a file to the specified folder in Google Drive
+         	for (let i=0; i< files.length; i++) {
+    			log.debug("[Google Drive Connector] File to upload : " + files[i]);
+    			
+    		    let fileMetadata = new File();
+    		    fileMetadata.setName(getFileName(files[i]+""));
+    		    
+    		    if (folderID != null && folderID != "") {
+    				log.debug("[Google Drive Connector] Will be uploaded in Folder ID : " + folderID);
+    		    	fileMetadata.setParents(Collections.singletonList(folderID));
+    			}
+    			
+    		    filePath = new java.io.File(files[i]);
+    
+    		    // Handle Convertigo ./ and .// syntax
+    		    filePath = com.twinsoft.convertigo.engine.Engine
+    			    .theApp
+    			    .filePropertyManager
+    		    	.getFilepathFromProperty(
+    					filePath,
+    					context.getProjectName()
+    			)
+    			log.debug("[Google Drive Connector] Physical path  : " + filePath);
+    
+    
+    			// Access the file and build the content
+    			javaFile = new java.io.File(filePath)
+    			
+    		    // Try to get the Mime type
+    		    let path = java.nio.file.Paths.get(javaFile.getAbsolutePath())
+    		    let mimeType = java.nio.file.Files.probeContentType(path)
+    			log.debug("[Google Drive Connector] Mime type  : " + mimeType);
+    
+    		    mediaContent = new com.google.api.client.http.FileContent(
+    				mimeType,
+    				javaFile);
+    				
+    		    file = service.files().create(fileMetadata, mediaContent)
+    		            .setFields("id, parents")
+    		            .execute();
+    		            
+    			log.debug("[Google Drive Connector] Sucessfully uploaded  : " + file.getId());
+    			uploadedFiles.push(file)		
+    		} 
+    	}
+    	catch( e) {
+    		log.error("[Google Drive Connector error " + e)		
+    	}
+    }
+    
+    
+    function getFileName(filePath) {
+        // Replace Windows backslashes with Unix forward slashes
+        const normalizedPath = filePath.replace(/\\/g, ''/'');
+        // Split the normalized path by slashes
+        const parts = normalizedPath.split(''/'');
+        // The file name is the last part of the array
+        return parts.pop();
+    }
+    
+    function getPath(service, file) {
+        let path = '''';
+        let parentIds = file.parents;
+    
+        while (parentIds && parentIds.length > 0) {
+            const parentId = parentIds[0];
+            const parent = service
+            	.files()
+            	.get(parentId)
+            	.setFields("id, name, parents")
+            	.execute();
+            path = ''/'' + parent.data.name + path;
+            parentIds = parent.data.parents;
+        }
+    	log.debug("[Google Drive Connector] Path Name :" + path);
+        return path;
+    }'
+↓jIf [steps.IfStep-1725208353884]: 
+  condition: setError != null
+  ↓Error_structure [steps.XMLErrorStep-1725208353887]: 
+    details: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+        - SmartType: 
+          - ↑mode: JS
+          - →→: setError
+    message: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.steps.SmartType
+        - SmartType: 
+          - ↑mode: PLAIN
+          - →→: GoogleDrive connector error
+  ↓Return [steps.ReturnStep-1725208353890]: 
+↓files [variables.RequestableMultiValuedVariable-1725208453305]: 
+  comment: The lits of files to upload
+  isFileUpload: true
+↓folderID [variables.RequestableVariable-1725208353914]: 
+  comment: The folder ID where to upload file. Root folder if not provided
+↓TestOK [core.TestCase]: 
+  ↓files [variables.TestCaseMultiValuedVariable-1725209486048]: 

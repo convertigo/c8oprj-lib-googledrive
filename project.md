@@ -174,6 +174,44 @@ The search query string. See  https://developers.google.com/drive/api/guides/sea
 
 </p></blockquote></details>
 
+<details><summary><b>FileUpload</b> : Upload files in a given folder for the currently logged user's Google Drive</summary><blockquote><p>
+
+
+## ![](https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/sequences/images/genericsequence_color_16x16.png?raw=true "GenericSequence") FileUpload
+
+Upload files in a given folder for the currently logged user's Google Drive
+
+<span style="color:DarkGoldenRod">Variables</span>
+
+<table>
+<tr>
+<th>
+name
+</th>
+<th>
+comment
+</th>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/multivaluedvariable_color_16x16.png?raw=true "  alt="RequestableMultiValuedVariable" >&nbsp;files
+</td>
+<td>
+The lits of files to upload
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;folderID
+</td>
+<td>
+The folder ID where to upload file. Root folder if not provided
+</td>
+</tr>
+</table>
+
+</p></blockquote></details>
+
 <details><summary><b>formssource_ListFiles</b> : List files from a Google Drive</summary><blockquote><p>
 
 
