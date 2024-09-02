@@ -49,7 +49,7 @@ comment: List files in the current logged user google drive
     	JSON_FACTORY = GsonFactory.getDefaultInstance();	
         HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
     
-    	log.warn("[Google Drive Connector] gCreds = " + gCreds)
+    	log.debug("[Google Drive Connector] gCreds = " + gCreds)
     	credential = new GoogleCredential().setAccessToken(gCreds);
     	
     	service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
@@ -59,10 +59,10 @@ comment: List files in the current logged user google drive
     	setError = null;
     
     	try {
-    		log.warn("[Google Drive Connector] start...");	
+    		log.debug("[Google Drive Connector] start...");	
     
     		pageSize = pageSize ? pageSize *= 1 : 100 
-    		log.warn("[Google Drive Connector] pageSize is : " + pageSize);	
+    		log.debug("[Google Drive Connector] pageSize is : " + pageSize);	
     		
     		let result = service.files()
     			.list()
@@ -76,7 +76,7 @@ comment: List files in the current logged user google drive
     			log.warn("[Google Drive Connector] No files found.");
     		} else {
     			for (let i=0; i < files.length; i++) {
-    				log.warn("[Google Drive Connector]"
+    				log.debug("[Google Drive Connector]"
     					 + "file Name :" + files[i].name
     					 + "File id: "   + files[i].id
     					 + "File Parent" + files[i].parents
@@ -104,7 +104,7 @@ comment: List files in the current logged user google drive
             path = ''/'' + parent.data.name + path;
             parentIds = parent.data.parents;
         }
-    	log.warn("[Google Drive Connector] Path Name :" + path);
+    	log.debug("[Google Drive Connector] Path Name :" + path);
         return path;
     }'
 ↓jIf [steps.IfStep-1725041907732]: 
