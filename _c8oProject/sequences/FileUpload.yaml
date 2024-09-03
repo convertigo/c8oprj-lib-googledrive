@@ -74,18 +74,15 @@ comment: Upload files in a given folder for the currently logged user's Google D
     		    	fileMetadata.setParents(Collections.singletonList(folderID));
     			}
     			
-    		    filePath = new java.io.File(files[i]);
-    
     		    // Handle Convertigo ./ and .// syntax
     		    filePath = com.twinsoft.convertigo.engine.Engine
     			    .theApp
     			    .filePropertyManager
     		    	.getFilepathFromProperty(
-    					filePath,
+    					files[i],
     					context.getProjectName()
     			)
     			log.debug("[Google Drive Connector] Physical path  : " + filePath);
-    
     
     			// Access the file and build the content
     			javaFile = new java.io.File(filePath)
@@ -162,3 +159,9 @@ comment: Upload files in a given folder for the currently logged user's Google D
   comment: The folder ID where to upload file. Root folder if not provided
 ↓TestOK [core.TestCase]: 
   ↓files [variables.TestCaseMultiValuedVariable-1725209486048]: 
+    value: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: .//c8oproject.yaml
