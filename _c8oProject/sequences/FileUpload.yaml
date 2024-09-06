@@ -57,7 +57,9 @@ comment: Upload files in a given folder for the currently logged user's Google D
             .build();
     
     	setError = null;
-    
+    	
+    	// setupLogging();
+    	
     	try {
     		log.debug("[Google Drive Connector] Action File upload start...");	
     		uploadedFiles = []
@@ -97,7 +99,7 @@ comment: Upload files in a given folder for the currently logged user's Google D
     				javaFile);
     				
     		    file = service.files().create(fileMetadata, mediaContent)
-    		            .setFields("id, parents")
+    		            .setFields("id,parents")
     		            .execute();
     		            
     			log.debug("[Google Drive Connector] Sucessfully uploaded  : " + file.getId());
@@ -135,6 +137,15 @@ comment: Upload files in a given folder for the currently logged user's Google D
         }
     	log.debug("[Google Drive Connector] Path Name :" + path);
         return path;
+    }
+    
+    
+    function setupLogging() {
+    	logger = java.util.logging.Logger.getLogger("com.google.api.client");
+    	logger.setLevel(java.util.logging.Level.ALL); // Set logging level to ALL
+    	handler = new java.util.logging.ConsoleHandler();
+    	handler.setLevel(java.util.logging.Level.ALL); // Log everything to console
+    	logger.addHandler(handler);
     }'
 ↓jIf [steps.IfStep-1725208353884]: 
   condition: setError != null
